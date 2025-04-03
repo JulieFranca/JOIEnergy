@@ -223,3 +223,144 @@ Run the application which will be listening on port `5000`.
 ```console
 $ dotnet run --project JOIEnergy
 ```
+
+# JOIEnergy API
+
+API for electrical energy management developed in ASP.NET Core.
+
+## 🚀 Features
+
+### Authentication and Authorization
+- JWT (JSON Web Token) authentication implementation
+- Login endpoint for token generation
+- Route protection with authentication middleware
+- Custom token validation settings
+
+### Reading Management
+- Endpoint to retrieve readings from specific meters
+- Automatic generation of test reading data
+- Meter and reading validation
+
+### Price Plans
+- Multiple energy providers
+- Different unit rates per provider
+- Meter association with price plans
+
+## 🛠️ Technologies Used
+
+- ASP.NET Core
+- JWT Authentication
+- Swagger/OpenAPI
+- CORS
+- Entity Framework Core (for future implementations)
+
+## 📋 Prerequisites
+
+- .NET 6.0 or higher
+- Visual Studio 2022 or VS Code
+- Postman or similar for API testing
+
+## 🔧 Setup
+
+1. Clone the repository
+2. Navigate to the project folder
+3. Run `dotnet restore`
+4. Run `dotnet build`
+5. Run `dotnet run`
+
+## 🔐 Authentication
+
+To access protected endpoints:
+
+1. Login at `/auth/login` with credentials:
+   ```json
+   {
+     "username": "admin",
+     "password": "admin"
+   }
+   ```
+
+2. Use the returned token in the Authorization header:
+   ```
+   Authorization: Bearer {your-token}
+   ```
+
+## 📝 Endpoints
+
+### Authentication
+- `POST /auth/login` - Authenticates user and returns JWT token
+
+### Readings
+- `GET /readings/read/{smartMeterId}` - Retrieves readings from a specific meter
+
+### Price Plans
+- `GET /price-plans` - Lists all available price plans
+- `GET /price-plans/{smartMeterId}` - Retrieves price plan for a specific meter
+
+## 🔒 Security
+
+- JWT Bearer Authentication implementation
+- Token validation with expiration
+- Protection against common attacks
+- CORS configured for development
+
+## 📦 Project Structure
+
+```
+JOIEnergy/
+├── Controllers/
+│   ├── AuthController.cs
+│   ├── MeterReadingController.cs
+│   └── PricePlanController.cs
+├── Services/
+│   ├── Auth/
+│   │   ├── AuthService.cs
+│   │   ├── IAuthService.cs
+│   │   └── ApiResponse.cs
+│   ├── Account/
+│   ├── MeterReading/
+│   └── Price/
+├── Domain/
+├── Enums/
+├── Generator/
+├── Settings/
+└── Startup.cs
+```
+
+## 🔄 Recent Changes
+
+### Authentication
+- Authentication service implementation
+- JWT middleware addition
+- Authentication events configuration
+- Error response standardization
+
+### Swagger
+- Swagger UI configuration
+- Endpoint documentation
+- Swagger authentication setup
+- API usage examples
+
+### Middleware
+- Middleware order reorganization
+- CORS implementation
+- Routing configuration
+- Authentication error handling
+
+### Responses
+- Response standardization with ApiResponse
+- Consistent error handling
+- Error messages in English
+
+## 🚧 Next Steps
+
+- [ ] Implement unit tests
+- [ ] Add logging
+- [ ] Implement caching
+- [ ] Add detailed documentation
+- [ ] Implement rate limiting
+- [ ] Add monitoring
+
+## 📄 License
+
+This project is under the MIT license.
